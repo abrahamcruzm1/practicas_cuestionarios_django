@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"><title>Portafolios</title></head>
+<body>
+<h2>Portafolios</h2>
+<p><a href="{% url 'index' %}">⬅ Volver</a></p>
+<p><a href="{% url 'portafolio_create' %}">➕ Nuevo portafolio</a></p>
+
+<table border="1" cellpadding="6">
+  <tr>
+    <th>ID</th><th>Cliente</th><th>Cuestionario</th><th>Usuario</th><th>Creado</th><th>Activo</th><th>Acciones</th>
+  </tr>
+  {% for p in object_list %}
+  <tr>
+    <td>{{ p.id }}</td>
+    <td>{{ p.cliente }}</td>
+    <td>{{ p.cuestionario }}</td>
+    <td>{{ p.usuario }}</td>
+    <td>{{ p.creado|date:"d/m/Y H:i" }}</td>
+    <td>{{ p.activo }}</td>
+    <td>
+      <a href="{% url 'portafolio_update' p.id %}">Editar</a> |
+      <a href="{% url 'portafolio_delete' p.id %}">Eliminar</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+</body>
+</html>
